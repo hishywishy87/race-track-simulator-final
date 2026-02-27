@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RaceTrackApp.MainPage"
+             Title="Race Track Simulator">
+
+    <Grid RowDefinitions="Auto, *, Auto" RowSpacing="10" Margin="20,0">
+
+        <!-- ROW 0: Top controls -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10" Margin="0,20,0,0">
+
+            <Label Text="Race Track Simulator" FontSize="24" FontAttributes="Bold"/>
+
+            <!-- Bettor selection -->
+            <Label Text="Select Bettor:" FontSize="16"/>
+            <HorizontalStackLayout Spacing="20">
+                <RadioButton x:Name="_rbtnBettor1" Content="Joe"
+                             CheckedChanged="OnSelectBettor"/>
+                <RadioButton x:Name="_rbtnBettor2" Content="Sam"
+                             CheckedChanged="OnSelectBettor"/>
+                <RadioButton x:Name="_rbtnBettor3" Content="Alex"
+                             CheckedChanged="OnSelectBettor"/>
+            </HorizontalStackLayout>
+
+            <!-- Bet entries -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Entry x:Name="_txtBet1" Placeholder="Joe's bet"
+                       Keyboard="Numeric" Grid.Column="0"/>
+                <Entry x:Name="_txtBet2" Placeholder="Sam's bet"
+                       Keyboard="Numeric" Grid.Column="1"/>
+                <Entry x:Name="_txtBet3" Placeholder="Alex's bet"
+                       Keyboard="Numeric" Grid.Column="2"/>
+            </Grid>
+
+            <!-- Racer pickers -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Picker x:Name="_pickerRacer1" Title="Joe's racer" Grid.Column="0">
+                    <Picker.Items>
+                        <x:String>Racer 1</x:String>
+                        <x:String>Racer 2</x:String>
+                        <x:String>Racer 3</x:String>
+                        <x:String>Racer 4</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker x:Name="_pickerRacer2" Title="Sam's racer" Grid.Column="1">
+                    <Picker.Items>
+                        <x:String>Racer 1</x:String>
+                        <x:String>Racer 2</x:String>
+                        <x:String>Racer 3</x:String>
+                        <x:String>Racer 4</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker x:Name="_pickerRacer3" Title="Alex's racer" Grid.Column="2">
+                    <Picker.Items>
+                        <x:String>Racer 1</x:String>
+                        <x:String>Racer 2</x:String>
+                        <x:String>Racer 3</x:String>
+                        <x:String>Racer 4</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+
+            <!-- Bet description labels -->
+            <Label x:Name="_lblBetDesc1" TextColor="Green"/>
+            <Label x:Name="_lblBetDesc2" TextColor="Green"/>
+            <Label x:Name="_lblBetDesc3" TextColor="Green"/>
+
+            <!-- Buttons -->
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                <Button Text="Place Bet" Clicked="OnPlaceBet" Grid.Column="0"/>
+                <ImageButton Source="raceflags.jpg" Clicked="OnStartRace"
+                             Grid.Column="1" HeightRequest="40"/>
+                <Button Text="Restart" Clicked="OnRestart" Grid.Column="2"/>
+                <Button Text="Analytics" Clicked="OnGoToAnalytics" Grid.Column="3"/>
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <!-- ROW 1: Racetrack -->
+        <AbsoluteLayout x:Name="_trackLayout" Grid.Row="1" BackgroundColor="LightGreen">
+            <Image Source="racetrack.png"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Aspect="Fill"/>
+            <Image x:Name="_imgRacer1" Source="dog.png"
+                   AbsoluteLayout.LayoutBounds="10,20,60,40"/>
+            <Image x:Name="_imgRacer2" Source="dog.png"
+                   AbsoluteLayout.LayoutBounds="10,80,60,40"/>
+            <Image x:Name="_imgRacer3" Source="dog.png"
+                   AbsoluteLayout.LayoutBounds="10,140,60,40"/>
+            <Image x:Name="_imgRacer4" Source="dog.png"
+                   AbsoluteLayout.LayoutBounds="10,200,60,40"/>
+        </AbsoluteLayout>
+
+        <!-- ROW 2: Status bar -->
+        <Label x:Name="_lblStatus" Grid.Row="2"
+               Text="Place your bets!"
+               FontSize="16"
+               HorizontalTextAlignment="Center"
+               Margin="0,0,0,20"/>
+
+    </Grid>
+</ContentPage>
